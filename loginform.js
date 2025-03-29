@@ -10,6 +10,9 @@ function LoginForm() {
       <video autoPlay loop muted className="background-video">
         <source src={backgroundVideo} type="video/mp4" />
       </video>
+         <Link to="/signupform" className="back-to-home">
+              &#8592; 
+            </Link>
 
       {/* Contenu du formulaire */}
       <div className="login-container">
@@ -21,9 +24,11 @@ function LoginForm() {
         </form>
 
         {/* Lien vers la page d'inscription */}
-        <p className="signup-link">
+      <p className="signup-link">
           <Link to="/signup">Vous n'avez pas de compte ? Inscrivez-vous</Link>
-          <Link to="/signup">Mot de passe oublier?</Link>
+        </p>
+        <p className="signup-link">
+        <Link to="/signup">Mot de passe oublier?</Link>
         </p>
       </div>
     </div>
