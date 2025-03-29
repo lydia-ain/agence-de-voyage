@@ -98,3 +98,21 @@
     width: 90%;
   }
 }
+/* Style de la flèche de retour */
+.back-to-home {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.back-to-home:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
