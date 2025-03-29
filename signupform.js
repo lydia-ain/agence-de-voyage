@@ -10,6 +10,10 @@ function SignupForm() {
       <video autoPlay loop muted className="background-video">
         <source src={backgroundVideo} type="video/mp4" />
       </video>
+       {/* Flèche de retour à l'accueil */}
+       <Link to="/" className="back-to-home">
+        &#8592; 
+      </Link>
 
       {/* Contenu du formulaire */}
       <div className="signup-container">
