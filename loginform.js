@@ -1,38 +1,118 @@
-import React from "react";
-import { Link } from "react-router-dom"; // ✅ Import de Link
-import "./loginform.css";
-import backgroundVideo from "./background2.mp4"; 
-
-function LoginForm() {
-  return (
-    <div className="login-wrapper">
-      {/* Vidéo en arrière-plan */}
-      <video autoPlay loop muted className="background-video">
-        <source src={backgroundVideo} type="video/mp4" />
-      </video>
-         <Link to="/signupform" className="back-to-home">
-              &#8592; 
-            </Link>
-
-      {/* Contenu du formulaire */}
-      <div className="login-container">
-        <h2 className="login-title">Connexion</h2>
-        <form className="login-form">
-          <input type="email" placeholder="Email" className="login-input" />
-          <input type="password" placeholder="Mot de passe" className="login-input" />
-          <button type="submit" className="login-button">Se connecter</button>
-        </form>
-
-        {/* Lien vers la page d'inscription */}
-      <p className="signup-link">
-          <Link to="/signup">Vous n'avez pas de compte ? Inscrivez-vous</Link>
-        </p>
-        <p className="signup-link">
-        <Link to="/signup">Mot de passe oublier?</Link>
-        </p>
-      </div>
-    </div>
-  );
+/* Style pour la vidéo d'arrière-plan */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
-export default LoginForm;
+/* Conteneur principal */
+.signup-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Boîte du formulaire */
+.signup-container {
+  background: rgba(255, 255, 255, 0.9); /* Légèrement transparent pour voir la vidéo */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Titre du formulaire */
+.signup-title {
+  color: black;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Formulaire */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Champs de saisie */
+.signup-input {
+  width: 90%; /* Réduction pour éviter les débordements */
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Bouton d'inscription */
+.signup-button {
+  width: 94%;
+  padding: 10px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.signup-button:hover {
+  background: #333;
+}
+
+/* Lien vers la connexion */
+.login-link {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Ajustement responsive */
+@media (max-width: 768px) {
+  .signup-container {
+    width: 90%;
+  }
+}
+/* Style de la flèche de retour */
+.back-to-home {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.back-to-home:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
