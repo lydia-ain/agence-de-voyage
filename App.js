@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import SignupForm from "./signupform"; 
 import LoginForm from "./loginform"; 
 import HomePage from "./Homepage";
+import PasswordReset from "./password"; 
+import About from "./about";
+import Search from "./search";
+import Destination from "./vols";
 
 function App() {
   return (
@@ -13,10 +17,13 @@ function App() {
 
         {/* Route vers la page d'accueil */}
         <Route path="/HomePage" element={<HomePage />} />
-
+        <Route path="/about" element={<About/>} />
+        <Route path="/search" element={<Search/>} />
+        <Route path="/vols" element={<Destination/>} />
         {/* Route vers la page de connexion */}
         <Route path="/loginform" element={<LoginForm />} />
-
+        <Route path="/password" element={<PasswordReset />} />
+        
         {/* Route vers la page d'inscription */}
         <Route path="/signupform" element={<SignupForm />} />
 
@@ -28,4 +35,3 @@ function App() {
 }
 
 export default App;
-
