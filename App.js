@@ -7,7 +7,7 @@ import PasswordReset from "./password";
 import About from "./about";
 import Search from "./search";
 import Destination from "./vols";
-
+import Detaildestination from "./detaildestination";
 function App() {
   return (
     <Router>
@@ -20,6 +20,7 @@ function App() {
         <Route path="/about" element={<About/>} />
         <Route path="/search" element={<Search/>} />
         <Route path="/vols" element={<Destination/>} />
+        <Route path="/detaildestination" element={<Detaildestination/>} />
         {/* Route vers la page de connexion */}
         <Route path="/loginform" element={<LoginForm />} />
         <Route path="/password" element={<PasswordReset />} />
