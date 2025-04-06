@@ -11,7 +11,7 @@ function SignupForm() {
         <source src={backgroundVideo} type="video/mp4" />
       </video>
        {/* Flèche de retour à l'accueil */}
-       <Link to="/" className="back-to-home">
+       <Link to="/Homepage" className="back-to-home">
         &#8592; 
       </Link>
 
