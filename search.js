@@ -61,7 +61,7 @@ export default function TravelBookingForm() {
       <nav className="navbar">
         <h2 className="logo">Fly Agency</h2>
         <ul className="nav-links">
-          <li><Link to="/destinations" className="nav-link">Vols</Link></li>
+          <li><Link to="/vols" className="nav-link">Vols</Link></li>
           <li><Link to="/search" className="nav-link">Hotel</Link></li>
           <li><Link to="/signupform" className="nav-link">S'inscrire</Link></li>
           <li><Link to="/loginform" className="nav-link">Se connecter</Link></li>
@@ -189,7 +189,7 @@ export default function TravelBookingForm() {
         <p>Trouvez les meilleures hôtels du moment</p>
       </div>
       {/* 🔹 SECTION DES MEILLEURS HÔTELS */}
-      <div className="best-hotels">
+      <div className="top-hotels">
         <button className="arrow left-arrow" onClick={() => scrollHotels("left")}>❮</button>
         <div className="hotels-container" ref={hotelsContainerRef}>
           {hotels.map((hotel, index) => (
@@ -254,8 +254,8 @@ export default function TravelBookingForm() {
             <h4>Navigation</h4>
             <ul>
               <li><a href="/">Accueil</a></li>
-              <li><a href="#destinations">Destinations</a></li>
-              <li><a href="#hotels">Hôtels</a></li>
+              <li><a href="/vols">Destinations</a></li>
+            <li><Link to="/search" className="nav-link">Hotels</Link></li>
               <li><Link to="/about" className="nav-link">À propos de nous</Link></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
