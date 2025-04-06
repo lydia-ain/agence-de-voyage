@@ -1,4 +1,3 @@
-
 body {
   background-color: #f0f0f0; /* Remplace #f0f0f0 par la couleur que tu veux */
   font-family: Arial, sans-serif; /* Police de base */
@@ -130,39 +129,59 @@ label {
 }
 /* 🔹 Section des meilleurs hôtels */
 
-.best-hotels {
-  position: relative;
-  width: 100%;
-  margin-right: 50px;
-  margin: 40px auto;
+.top-hotels {
+  background: #fff7e6; /* Fond clair */
   padding: 20px;
-  border-radius: 10px;
-  overflow: hidden; /* Masquer le défilement vertical */
+  margin: 20px auto;
+  border-radius: 8px;
+  width: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.hotels-container::-webkit-scrollbar {
+  display: none;
+}
+.hotels-container {
+  -ms-overflow-style: none; /* IE et Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
+
 .hotels-container {
-  display: flex; /* Utilisation du flexbox pour permettre le défilement horizontal */
-  gap: 20px; /* Espacement entre les cartes d'hôtels */
-  overflow-x: auto; /* Permet le défilement horizontal */
-  padding: 10px;
-  scroll-behavior: smooth; /* Ajout d'un effet de défilement fluide */
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    position: relative;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    flex-wrap: nowrap;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 1070px;
+    margin-left: 70px;
+    
 }
 
 .hotel-card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  flex: 0 0 100px;
+  min-width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 1rem;
   text-align: center;
-  padding: 15px;
-  flex: 0 0 auto; /* Empêche la carte de se redimensionner */
-  width: 250px; /* Largeur fixe pour chaque carte */
 }
+
+
 
 .hotel-card img {
   width: 100%;
-  height: 200px;
-  border-radius: 5px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
 }
+
 .destination-title {
   display: flex;
   align-items: center;
@@ -221,25 +240,6 @@ label {
 }
 
 
-/* Style pour la section des Top Hôtels */
-.top-hotels {
-  text-align: center;
-  margin: 40px auto;
-  padding: 20px;
-}
-
-.top-hotels h2 {
-  font-size: 30px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.top-hotels p {
-  font-size: 16px;
-  color: #555;
-  margin-top: 0;
-}
 /* Styles pour les offres spéciales */
 .special-offers {
   background: #fff7e6; /* Fond clair */
