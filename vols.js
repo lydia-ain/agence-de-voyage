@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"; 
+import React, { useState } from "react";
 import "./vols.css";
 import { Link } from "react-router-dom";
 
@@ -16,9 +16,6 @@ export default function TravelBookingForm() {
   });
 
   const [tooltipVisible, setTooltipVisible] = useState(false);
-  const hotelsContainerRef = useRef(null);
-  const destinationsContainerRef = useRef(null); // ✅ Correction ajoutée ici
-  
 
   const destinations = ["Paris", "New York", "Tokyo", "Londres", "Dubai", "Rome"];
 
@@ -28,8 +25,25 @@ export default function TravelBookingForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Vérification que la date de départ est avant la date de retour
+    const departureDate = new Date(formData.departureDate);
+    const returnDate = new Date(formData.returnDate);
+    if (departureDate >= returnDate) {
+        alert("La date de départ doit être antérieure à la date de retour.");
+        return;
+    }
+
+    // Vérification que le lieu de départ est différent du lieu d'arrivée
+    if (formData.destination === formData.destinationReturn) {
+        alert("Le lieu de départ doit être différent du lieu d'arrivée.");
+        return;
+    }
+
     console.log("Form submitted", formData);
-  };
+    // Tu peux intégrer ici la logique pour interroger ta base de données et récupérer les vols correspondants
+};
+
 
   const handleCloseTooltip = () => {
     setTooltipVisible(false);
@@ -42,16 +56,14 @@ export default function TravelBookingForm() {
     { name: "Oran", flag: "🇩🇿", image: "https://d1bvpoagx8hqbg.cloudfront.net/originals/experiencia-en-oran-algeria-por-riad-148669f1adfda551de3d9d0f0eb377d4.jpg" },
     { name: "Marseille", flag: "🇫🇷", image: "https://th.bing.com/th/id/OIP.Rq0yGMagcfqJ2BfB0zvBLwHaE7?rs=1&pid=ImgDetMain" }
   ];
-  
- 
 
   return (
     <div className="container">
       <nav className="navbar">
         <h2 className="logo">Fly Agency</h2>
         <ul className="nav-links">
-          <li><Link to="/destinations" className="nav-link">Vols</Link></li>
-          <li><Link to="/search" className="nav-link">Hotel</Link></li>
+          <li><Link to="/vols" className="nav-link">Vols</Link></li>
+          <li><Link to="/search" className="nav-link">Hôtel</Link></li>
           <li><Link to="/signupform" className="nav-link">S'inscrire</Link></li>
           <li><Link to="/loginform" className="nav-link">Se connecter</Link></li>
         </ul>
@@ -59,13 +71,13 @@ export default function TravelBookingForm() {
 
       <header className="headers">
         <h1 className="title">Trouvez votre prochain voyage</h1>
-        <p className="subtitle">Recherchez des offres sur des vols,et plus encore</p>
+        <p className="subtitle">Recherchez des offres sur des vols, et plus encore</p>
 
         <div className="form-container">
-          <h2 className="form-title">Réservez votre vol </h2>
+          <h2 className="form-title">Réservez votre vol</h2>
           <form onSubmit={handleSubmit} className="form-layout">
             <div className="form-group">
-              <label className="form-label">De</label>
+              <label className="form-label">lieu de départ</label>
               <input
                 list="destinations"
                 name="destination"
@@ -77,17 +89,18 @@ export default function TravelBookingForm() {
               />
             </div>
             <div className="form-group">
-              <label className="form-label">à</label>
-              <input
-                list="destinations"
-                name="destination"
-                placeholder="Destination"
-                className="form-input"
-                onChange={handleChange}
-                required
-                value={formData.destination}
-              />
-            </div>
+    <label className="form-label">lieu d'arrivée</label>
+    <input
+        list="destinations"
+        name="destinationReturn"
+        placeholder="Destination"
+        className="form-input"
+        onChange={handleChange}
+        required
+        value={formData.destinationReturn}  // Ajout de la nouvelle valeur
+    />
+</div>
+
             <datalist id="destinations">
               {destinations.map((city, index) => (
                 <option key={index} value={city} />
@@ -129,57 +142,57 @@ export default function TravelBookingForm() {
                 onFocus={() => setTooltipVisible(true)}
               />
 
-{tooltipVisible && (
-  <div className="tooltip">
-    <div>
-      <label>Classe</label>
-      <select
-        name="classe"
-        value={formData.classe}
-        onChange={handleChange}
-      >
-        <option value="eco">Économique</option>
-        <option value="eco-premium">Économique Premium</option>
-        <option value="affaire">Affaires</option>
-        <option value="premiere">Première</option>
-      </select>
-    </div>
-    <div>
-      <label>Adultes</label>
-      <input
-        type="number"
-        name="adults"
-        min="1"
-        value={formData.adults}
-        onChange={handleChange}
-      />
-    </div>
-    <div>
-      <label>Enfants</label>
-      <input
-        type="number"
-        name="children"
-        min="0"
-        value={formData.children}
-        onChange={handleChange}
-      />
-    </div>
-    <div>
-      <label>Voyage avec un animal ?</label>
-      <select
-        name="pets"
-        value={formData.pets}
-        onChange={handleChange}
-      >
-        <option value="no">Non</option>
-        <option value="yes">Oui</option>
-      </select>
-    </div>
-    <button onClick={handleCloseTooltip} className="tooltip-button">
-      Terminer
-    </button>
-  </div>
-)}
+              {tooltipVisible && (
+                <div className="tooltip">
+                  <div>
+                    <label>Classe</label>
+                    <select
+                      name="classe"
+                      value={formData.classe}
+                      onChange={handleChange}
+                    >
+                      <option value="eco">Économique</option>
+                      <option value="eco-premium">Économique Premium</option>
+                      <option value="affaire">Affaires</option>
+                      <option value="premiere">Première</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label>Adultes</label>
+                    <input
+                      type="number"
+                      name="adults"
+                      min="1"
+                      value={formData.adults}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label>Enfants</label>
+                    <input
+                      type="number"
+                      name="children"
+                      min="0"
+                      value={formData.children}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label>Voyage avec un animal ?</label>
+                    <select
+                      name="pets"
+                      value={formData.pets}
+                      onChange={handleChange}
+                    >
+                      <option value="no">Non</option>
+                      <option value="yes">Oui</option>
+                    </select>
+                  </div>
+                  <button onClick={handleCloseTooltip} className="tooltip-button">
+                    Terminer
+                  </button>
+                </div>
+              )}
             </div>
 
             <button type="submit" className="form-button">Rechercher</button>
@@ -188,22 +201,19 @@ export default function TravelBookingForm() {
       </header>
 
       <div className="top-hotels">
-  <h2>Destination populaire</h2>
-  <div className="destinations-grid">
-    {destination.map((item, index) => (
-      <div className="hotel-card" key={index}>
-        <img src={item.image} alt={item.name} className="destination-image" />
-        <div className="destination-info">
-          <span className="destination-name">{item.name}</span>
-          <span className="destination-flag">{item.flag}</span>
+        <h2>Destination populaire</h2>
+        <div className="destinations-grid">
+          {destination.map((item, index) => (
+            <div className="hotel-card" key={index}>
+              <img src={item.image} alt={item.name} className="destination-image" />
+              <div className="destination-info">
+                <span className="destination-name">{item.name}</span>
+                <span className="destination-flag">{item.flag}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    ))}
-  </div>
-</div>
-
-
-
 
       <footer className="footer">
         <div className="footer-container">
@@ -216,7 +226,7 @@ export default function TravelBookingForm() {
             <ul>
               <li><a href="/">Accueil</a></li>
               <li><Link to="/vols" className="nav-link">Vols</Link></li>
-              <li><a href="#hotels">Hôtels</a></li>
+              <li><Link to="/search" className="nav-link">Hotels</Link></li>
               <li><Link to="/about" className="nav-link">À propos de nous</Link></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
@@ -225,16 +235,10 @@ export default function TravelBookingForm() {
             <h4>Suivez-nous</h4>
             <div className="social-icons">
               <Link to="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook <i className="fab fa-facebook"></i></Link>
-              <Link to="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></Link>
-              <Link to="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter <i className="fab fa-twitter"></i></Link>
-              <Link to="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn <i className="fab fa-linkedin"></i></Link>
+              <Link to="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram <i className="fab fa-instagram"></i></Link>
+              <Link to="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter <i className="fab fa-twitter"></i></Link>
             </div>
-            <p className="contact-info">📍 Adresse : 123 Rue Bejaia, Bejaia, Algérie</p>
-            <p className="contact-info">✉️ Email : contact@flyagency.com</p>
           </div>
-        </div>
-        <div className="footer-bottom">
-          <p>&copy; 2025 Fly Agency. Tous droits réservés.</p>
         </div>
       </footer>
     </div>
