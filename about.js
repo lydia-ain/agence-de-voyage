@@ -10,10 +10,10 @@ const HomePage = () => {
         <h2 className="logo">Fly Agency</h2>
         
         <ul className="nav-links">
-          <li><Link to="/destinations" className="nav-link">Vols</Link></li>
-          <li><Link to="/search" className="nav-link">Hotel</Link></li>
-          <li><Link to="/about" className="nav-link">À propos de nous</Link></li>
-          <li><Link to="/loginform" className="nav-link">Se connecter</Link></li>
+          <li><Link to="/vols" className="nav-link">Vols</Link></li>
+                   <li><Link to="/search" className="nav-link">Hotel</Link></li>
+                   <li><Link to="/signupform" className="nav-link">S'inscrire </Link></li>
+                   <li><Link to="/loginform" className="nav-link">Se connecter</Link></li>
         </ul>
       </nav>
 
@@ -76,10 +76,10 @@ const HomePage = () => {
           <div className="footer-section">
             <h4>Navigation</h4>
             <ul>
-              <li><a href="/">Accueil</a></li>
-              <li><a href="#destinations">Vols</a></li>
-              <li><a href="#hotels">Hôtels</a></li>
-              <li><a href="#contact">Contact</a></li>
+               <li><Link to="/vols" className="nav-link">Vols</Link></li>
+                            <li><Link to="/search" className="nav-link">Hotels</Link></li>
+                            <li><Link to="/about" className="nav-link">À propos de nous</Link></li>
+                        <li><button className="nav-linkss">Contact</button></li> 
             </ul>
           </div>
           <div className="footer-section">
